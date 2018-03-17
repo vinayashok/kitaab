@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react"
 
-import { Link } from 'react-router-dom'
-import propTypes from 'prop-types'
-//import Button from 'material-ui/Button'
-import sortBy from 'sort-by'
+import { Link } from "react-router-dom"
+import propTypes from "prop-types"
+import sortBy from "sort-by"
 
 class ListBooks extends React.Component {
   
@@ -38,7 +37,7 @@ class ListBooks extends React.Component {
                           <li>
                             <div className="book">
                               <div className="book-top">
-                                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks['thumbnail']})` }}></div>
+                                {book.imageLinks ? <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks['thumbnail']})` }}></div>: null}
                                 <div className="book-shelf-changer">
                                   <select onChange={(e) => this.onChange(book, e)} defaultValue={book.shelf}>
                                     <option value="none" disabled>Move to...</option>
@@ -66,7 +65,7 @@ class ListBooks extends React.Component {
                           <li>
                             <div className="book">
                               <div className="book-top">
-                                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks['thumbnail']})` }}></div>
+                                {book.imageLinks ? <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks['thumbnail']})` }}></div>: null}
                                 <div className="book-shelf-changer">
                                   <select onChange={(e) => this.onChange(book, e)} defaultValue={book.shelf}>
                                     <option value="none" disabled>Move to...</option>
@@ -94,7 +93,7 @@ class ListBooks extends React.Component {
                           <li key={book.id}>
                             <div className="book">
                               <div className="book-top">
-                                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks['thumbnail']})` }}></div>
+                                {book.imageLinks ? <div className="book-cover" style={{ width: 128, height: 193, backgroundImage:`url(${book.imageLinks['thumbnail']})` }}></div>: null}
                                 <div className="book-shelf-changer">
                                   <select onChange={(e) => this.onChange(book, e)} defaultValue={book.shelf}>
                                     <option value="none" disabled>Move to...</option>

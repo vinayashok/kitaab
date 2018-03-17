@@ -113,7 +113,7 @@ body, .app {
   margin: 0;
 
   display: flex;
-  justify-content: left;
+  justify-content: center;
   flex-wrap: wrap;
 }
 

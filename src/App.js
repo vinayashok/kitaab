@@ -1,22 +1,26 @@
-import React from 'react'
-// import * as BooksAPI from './BooksAPI'
-import { Route } from 'react-router-dom'
-import ListBooks from './ListBooks'
-import SearchBooks from './SearchBooks'
-import * as BooksAPI from './BooksAPI' 
-import './App.css'
+import React from "react"
+import { Route } from "react-router-dom"
+import ListBooks from "./ListBooks"
+import SearchBooks from "./SearchBooks"
+import * as BooksAPI from "./BooksAPI"
+import "./App.css"
 
 
 class BooksApp extends React.Component {
   state = {
-    books: []
+    books: [],
+    searchResults: []
   }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
       this.setState({'books':books})
     })
-    
+  }
+  
+  updateSearchResults = () => {
+    this.setState({'searchResults': []})
+    this.componentDidMount()
   }
 
   // Function to move book from one shelf to another 
@@ -30,6 +34,17 @@ class BooksApp extends React.Component {
     
   }
 
+  searchBooks = (query, maxResults) => {
+    BooksAPI.search(query, maxResults).then(books => {
+      if (books instanceof Array) {
+        this.setState({'searchResults': books})
+      } else {
+        this.setState({'searchResults': []})
+      }
+      
+    })
+  }
+
   render() {
     return (
       <div className="app">
@@ -40,7 +55,13 @@ class BooksApp extends React.Component {
           />
         )}/>
         <Route path="/search" render={() => (
-          <SearchBooks/>                            
+          <SearchBooks
+            books={this.state.searchResults}
+            srbooks={this.state.books}
+            updateBookShelf={this.updateShelf}
+            searchBooks={this.searchBooks}
+            updateSearch={this.updateSearchResults}
+          />                            
         )}/>    
       </div>
     )
