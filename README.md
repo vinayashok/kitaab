@@ -21,9 +21,14 @@ MyReads Main Page:
 * The main page has a control that allows users to move books between shelves. The control is tied to each book instance.
 * You have a link/add button on the Main page which redirects you to Search Page.
 
+Screen Shot 2018-03-18 at 2.37.11 PM
+
 Search Page:
 
 * Search page where you can search for new books based on title or author.
 * You can move books in the search results to one of the shelves.
+
+Screen Shot 2018-03-18 at 2.38.09 PM
+Screen Shot 2018-03-18 at 2.38.25 PM
 
 
