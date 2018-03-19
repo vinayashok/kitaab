@@ -2,6 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom"
 import propTypes from "prop-types"
 
+/**
+* @description Represents a books search react component 
+*/
 class SearchBooks extends React.Component {
   
   static propTypes = {
@@ -16,15 +19,25 @@ class SearchBooks extends React.Component {
     query: ''
   }
   
+  /**
+  * @description Represents a function to update search query state
+  */
   updateQuery = (query) => {
     this.setState({query: query.trim()})
     this.props.searchBooks(query, 20)
   }
 
+  /**
+  * @description Represents a function to update bookshelf 
+  */
   onChange(book, e) {
     this.props.updateBookShelf(book, e.target.value)
   }
 
+  /**
+  * @description Represents a function to assignb default 
+  * bookshelf to search results
+  */
   assignBookShelf = (bookId) => {
     const srbooks = this.props.srbooks
     const bookIndex = srbooks.findIndex(b => b.id === bookId)
@@ -40,17 +53,13 @@ class SearchBooks extends React.Component {
               <Link className="close-search" onClick={this.props.updateSearch} to="/">Close</Link>
               <div className="search-books-input-wrapper">
                 {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
+                  
                 */}
                 <input 
                   type="text"
                   placeholder="Search by title or author"
                   onChange={(event) => this.updateQuery(event.target.value)}
-                />
+                ></input>
 
               </div>
             </div>
@@ -82,13 +91,12 @@ class SearchBooks extends React.Component {
                     </li>
                   </ol>
                 </div>
-              )): <div><span>Please enter valid title or author name in the field above</span></div>}  
+              )): <div><span>Please enter valid title or author name in the field above</span></div>}
             </div>
           </div>
     )
   }
 
 }
-
 
 export default SearchBooks

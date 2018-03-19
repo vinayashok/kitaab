@@ -4,6 +4,9 @@ import { Link } from "react-router-dom"
 import propTypes from "prop-types"
 import sortBy from "sort-by"
 
+/**
+* @description Represents a books list react component 
+*/
 class ListBooks extends React.Component {
   
   static propTypes = {
@@ -11,17 +14,22 @@ class ListBooks extends React.Component {
     updateBookShelf: propTypes.func.isRequired
   }
   
+  /**
+  * @description 
+  * @param {string} book - book object that needs to be updated.
+  * @param {string} e - event object.
+  */
   onChange(book, e) {
     this.props.updateBookShelf(book, e.target.value)
   }
 
   render() {
-    const books = this.props.books 
+    const books = this.props.books
     let currentlyReading = books.filter( book => book.shelf === 'currentlyReading').sort(sortBy('title'))
     let read = books.filter( book => book.shelf === 'read').sort(sortBy('title'))
     let wantToRead = books.filter( book => book.shelf === 'wantToRead').sort(sortBy('title'))
  
-    return ( 
+    return (
        <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
@@ -55,11 +63,11 @@ class ListBooks extends React.Component {
                           </li>
                         </ol>
                       </div>
-                    ))}  
+                    ))}
                   </div>
                   <div className="bookshelf">
                     <h2 className="bookshelf-title">Want To Read</h2>
-                    {wantToRead.map((book) => ( 
+                    {wantToRead.map((book) => (
                       <div className="bookshelf-books" key={book.id}>
                         <ol className="books-grid">
                           <li>
@@ -83,11 +91,11 @@ class ListBooks extends React.Component {
                           </li>
                         </ol>
                       </div>
-                    ))}  
+                    ))}
                   </div>
                   <div className="bookshelf">
                     <h2 className="bookshelf-title">Read</h2>
-                    {read.map((book) => ( 
+                    {read.map((book) => (
                       <div className="bookshelf-books" key={book.id}>
                         <ol className="books-grid">
                           <li key={book.id}>
@@ -111,7 +119,7 @@ class ListBooks extends React.Component {
                           </li>
                         </ol>
                       </div>
-                    ))}  
+                    ))} 
                   </div>
                 </div>
               </div>

@@ -6,6 +6,9 @@ import * as BooksAPI from "./BooksAPI"
 import "./App.css"
 
 
+/**
+* @description Represents a books app react component 
+*/
 class BooksApp extends React.Component {
   state = {
     books: [],
@@ -18,12 +21,22 @@ class BooksApp extends React.Component {
     })
   }
   
+  /**
+  * @description Represents a function to update search 
+  * results when returning from Search page
+  * @param {string} title - The title of the book
+  * @param {string} author - The author of the book
+  */
   updateSearchResults = () => {
     this.setState({'searchResults': []})
     this.componentDidMount()
   }
 
-  // Function to move book from one shelf to another 
+   /**
+   * @description Function to move book from one shelf to another
+   * @param {string} book - The book that needs to be updated
+   * @param {string} shelf - The Shelf in which the book needs to be moved
+  */
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf).then(() => {
       const books = this.state.books
@@ -34,6 +47,11 @@ class BooksApp extends React.Component {
     
   }
 
+  /**
+  * @description Function to search books.
+  * @param {string} query - Search query.
+  * @param {string} maxResults - Maximum resukts that API can return.
+  */
   searchBooks = (query, maxResults) => {
     BooksAPI.search(query, maxResults).then(books => {
       if (books instanceof Array) {
@@ -61,7 +79,7 @@ class BooksApp extends React.Component {
             updateBookShelf={this.updateShelf}
             searchBooks={this.searchBooks}
             updateSearch={this.updateSearchResults}
-          />                            
+          />
         )}/>    
       </div>
     )
